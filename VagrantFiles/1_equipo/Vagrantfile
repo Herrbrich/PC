@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/jammy64"
   
   #Nombre de la pc dentro del Sistema Operativo
-  config.vm.hostname = "VMPruebas"
+  config.vm.hostname = "VMBricchi"
   
   # Comparto la carpeta del host donde estoy parado contra la vm
   config.vm.synced_folder '.', '/home/vagrant/carpeta_compartida'
@@ -20,17 +20,19 @@ Vagrant.configure("2") do |config|
   # Configuración de Red
   config.vm.network "private_network", :name => '', ip: ip_address
   #config.vm.network "private_network", :name => '', ip: "192.168.56.2"
-
+  
+  config.vm.disk :disk, size: "10GB", name: "DiscoParcial"
+  config.vm.disk :disk, size: "2GB", name: "DiscoDefender"
 
   #Configuraciones de la VM en VirtualBox
   config.vm.provider "virtualbox" do |vb|
     #Cantidad de RAM
-    vb.memory = "2048"
+    vb.memory = "4096"
     #Cantidad de Procesadores
     vb.cpus = 2
 
     #Nombre de la VM en VirtualBox 
-    vb.name = "VMPruebas"
+    vb.name = "VMBricchi"
     
     # Habilitar clones enlazados en VirtualBox
     vb.linked_clone = true
